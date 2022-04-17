@@ -6,7 +6,7 @@ from owners import get_owners
 
 async def get_listings(channel):
   time_now = datetime.now().strftime('%s')
-  last_time = int(time_now) - 900
+  last_time = int(time_now) - 9000
 
   message_information = await channel.history().flatten()
 
@@ -71,16 +71,20 @@ async def get_listings(channel):
       url=listing_url, 
       description=f"A fine new gotchi from the Portal Mages is available to rent for {period} hours", 
       color=0x8617bb)
+    # image = discord.File("mages.jpg", filename="mages.jpg")
+    image = discord.File("mage-icon.png", filename="mage-icon.png")
+    embedVar.set_author(name="The Order of Portal Mages", icon_url='attachment://mage-icon.png')
+    embedVar.set_thumbnail(url="attachment://mage-icon.png")
     embedVar.add_field(name="Whitelist", value=whitelist, inline=False)
     # embedVar.add_field(name="Rarity", value=brs, inline=True)
     # embedVar.add_field(name="Kinship", value=kinship, inline=True)
     # embedVar.add_field(name="Experience", value=experience, inline=True)
     # embedVar.add_field(name="Level", value=level, inline=False)
-    embedVar.add_field(name="Owner Discord", value='@'+owner_discord, inline=False)
+    embedVar.add_field(name="Owner's Discord", value='@'+owner_discord, inline=False)
 
     if listing_url in messages:
       pass
     else:
-      await channel.send(embed=embedVar)
+      await channel.send(file=image, embed=embedVar)
   
   print("listing loop completed")

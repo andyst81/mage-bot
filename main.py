@@ -5,19 +5,20 @@ from decouple import config
 from listings import get_listings
 from reactions import get_reactions
 # from checker import get_multiples
+from golden import get_altar_prices
 
 token = config('TOKEN')
 
 bot = discord.Bot()
-guild_ids = [880940749422751785] # TOPM
-# guild_ids = [953689715759022081] # testing
+# guild_ids = [880940749422751785] # TOPM
+guild_ids = [953689715759022081] # testing
 
 
 @tasks.loop(seconds=300)
 async def cont_loop():
   print("Loop started")
-  channel = bot.get_channel(957337208396861521) # main chat
-  # channel = bot.get_channel(964742527498473492) # testing server
+  # channel = bot.get_channel(957337208396861521) # main chat
+  channel = bot.get_channel(953689715759022084) # testing server
   await get_listings(channel)
   await get_reactions(channel)
   # await get_multiples(channel)
@@ -27,6 +28,13 @@ async def cont_loop():
 async def on_ready():
   print('on ready')
   cont_loop.start()
+
+@bot.event
+async def on_message(message):
+  if message.author == bot.user:
+    return
+  elif message.startswith('!golden'):
+    get_altar_prices()
 
 @bot.slash_command(guild_ids=guild_ids)
 async def pass_blunt(ctx, receiver):
