@@ -1,11 +1,12 @@
 import requests
 import json
 from pycoingecko import CoinGeckoAPI
+import discord
 
 cg = CoinGeckoAPI()
 
 
-def get_altar_prices():
+async def get_altar_prices(managers_channel):
   kek_ticker = cg.get_price(ids='aavegotchi-kek', vs_currencies='usd')
   kek_price = kek_ticker['aavegotchi-kek']['usd']
 
@@ -60,8 +61,19 @@ def get_altar_prices():
 
   listing_url = 'https://app.aavegotchi.com/baazaar/erc1155/' + data['id']
 
-  print(altar_price, altar_alpha, altar_fomo, altar_fud, altar_ghst, altar_kek, baazaar_price, baazaar_usd, listing_url)
-  return altar_price, altar_alpha, altar_fomo, altar_fud, altar_ghst, altar_kek, baazaar_price, baazaar_usd, listing_url
-
-if __name__ == '__main__':
-  get_altar_prices()
+  # print(altar_price, altar_alpha, altar_fomo, altar_fud, altar_ghst, altar_kek, baazaar_price, baazaar_usd, listing_url)
+  # message = f'Cost of alchemica to craft LE Golden Aaltar is {altar_price} USD, {altar_ghst} GHST. \n{altar_kek} of KEK, {altar_alpha} of ALPHA, {altar_fomo} of FOMO and {altar_fud} of FUD. \nBaazaar floor price is {baazaar_price} GHST, {baazaar_usd} USD. \n{listing_url}'
+  embedVar = discord.Embed(
+      title=f'LE Golden Altar costs {altar_ghst} GHST, or {altar_price} USD to buy with alchemica', 
+      color=0x8617bb)
+  image = discord.File("mage-icon.png", filename="mage-icon.png")
+  embedVar.set_author(name="The Order of Portal Mages", icon_url='attachment://mage-icon.png')
+  embedVar.set_thumbnail(url="attachment://mage-icon.png")
+  embedVar.add_field(name="KEK Cost", value=str(altar_kek) + ' USD', inline=True)
+  embedVar.add_field(name="ALPHA Cost", value=str(altar_alpha) + ' USD', inline=True)
+  embedVar.add_field(name="FOMO Cost", value=str(altar_fomo) + ' USD', inline=True)
+  embedVar.add_field(name="FUD Cost", value=str(altar_fud) + ' USD', inline=True)
+  embedVar.add_field(name="Current Baazaar Floor", value=str(baazaar_price) + " GHST", inline=False)
+  embedVar.add_field(name="Baazaar Link", value=listing_url, inline=True)
+  
+  await managers_channel.send(file=image, embed=embedVar)

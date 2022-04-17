@@ -31,10 +31,11 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
+  managers_channel = bot.get_channel(957358931053776956)
   if message.author == bot.user:
     return
-  elif message.startswith('!golden'):
-    get_altar_prices()
+  elif message.content.startswith('!golden'):
+    await get_altar_prices(managers_channel)
 
 @bot.slash_command(guild_ids=guild_ids)
 async def pass_blunt(ctx, receiver):

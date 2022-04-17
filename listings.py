@@ -6,7 +6,7 @@ from owners import get_owners
 
 async def get_listings(channel):
   time_now = datetime.now().strftime('%s')
-  last_time = int(time_now) - 9000
+  last_time = int(time_now) - 900
 
   message_information = await channel.history().flatten()
 
