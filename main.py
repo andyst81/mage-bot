@@ -31,7 +31,8 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-  managers_channel = bot.get_channel(957358931053776956)
+  # managers_channel = bot.get_channel(957358931053776956) # main chat
+  managers_channel = bot.get_channel(953689715759022084) # tetting server
   if message.author == bot.user:
     return
   elif message.content.startswith('!golden'):
