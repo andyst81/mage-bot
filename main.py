@@ -5,7 +5,7 @@ from decouple import config
 from listings import get_listings
 from reactions import get_reactions
 # from checker import get_multiples
-from golden import get_altar_prices
+from golden import get_altar_prices, get_tile_prices
 
 token = config('TOKEN')
 
@@ -19,8 +19,8 @@ async def cont_loop():
   print("Loop started")
   # channel = bot.get_channel(957337208396861521) # main chat
   channel = bot.get_channel(953689715759022084) # testing server
-  await get_listings(channel)
-  await get_reactions(channel)
+  # await get_listings(channel)
+  # await get_reactions(channel)
   # await get_multiples(channel)
   print("Loop completed")
 
@@ -32,11 +32,13 @@ async def on_ready():
 @bot.event
 async def on_message(message):
   # managers_channel = bot.get_channel(957358931053776956) # main chat
-  managers_channel = bot.get_channel(953689715759022084) # tetting server
+  managers_channel = bot.get_channel(953689715759022084) # testing server
   if message.author == bot.user:
     return
-  elif message.content.startswith('!golden'):
+  elif message.content.startswith('!altar'):
     await get_altar_prices(managers_channel)
+  elif message.content.startswith('!tile'):
+    await get_tile_prices(managers_channel)
 
 @bot.slash_command(guild_ids=guild_ids)
 async def pass_blunt(ctx, receiver):
