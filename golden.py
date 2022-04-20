@@ -32,13 +32,13 @@ async def get_altar_prices(managers_channel):
   kek_price, alpha_price, fomo_price, fud_price, ghst_price = get_alch_prices()
 
   # 3,000 FUD, 1,500 FOMO, 2,000 ALPHA, and 750 KEK
-  altar_kek = round(kek_price * 750, 2)
-  altar_alpha = round(alpha_price * 2000, 2)
-  altar_fomo = round(fomo_price * 1500, 2)
-  altar_fud = round(fud_price * 3000, 2)
+  altar_kek = round(kek_price * 750)
+  altar_alpha = round(alpha_price * 2000)
+  altar_fomo = round(fomo_price * 1500)
+  altar_fud = round(fud_price * 3000)
 
-  altar_price = round(altar_kek + altar_alpha + altar_fomo + altar_fud, 2)
-  altar_ghst = round(altar_price / ghst_price, 2)
+  altar_price = round(altar_kek + altar_alpha + altar_fomo + altar_fud)
+  altar_ghst = round(altar_price / ghst_price)
 
   query = '''
   {
@@ -73,7 +73,7 @@ async def get_altar_prices(managers_channel):
   # print(altar_price, altar_alpha, altar_fomo, altar_fud, altar_ghst, altar_kek, baazaar_price, baazaar_usd, listing_url)
   # message = f'Cost of alchemica to craft LE Golden Aaltar is {altar_price} USD, {altar_ghst} GHST. \n{altar_kek} of KEK, {altar_alpha} of ALPHA, {altar_fomo} of FOMO and {altar_fud} of FUD. \nBaazaar floor price is {baazaar_price} GHST, {baazaar_usd} USD. \n{listing_url}'
   embedVar = discord.Embed(
-      title=f'LE Golden Altar costs {altar_ghst} GHST, or {altar_price} USD, to buy with alchemica', 
+      title=f'LE Golden Altar costs approx. {altar_ghst} GHST, or {altar_price} USD, to buy with alchemica', 
       color=0x8617bb)
   image = discord.File("mage-icon.png", filename="mage-icon.png")
   embedVar.set_author(name="The Order of Portal Mages", icon_url='attachment://mage-icon.png')
@@ -94,13 +94,13 @@ async def get_tile_prices(managers_channel):
   kek_price, alpha_price, fomo_price, fud_price, ghst_price = get_alch_prices()
 
   # 25 FUD, 25 FOMO, 75 ALPHA, and 25 KEK
-  tile_kek = round(kek_price * 25, 2)
-  tile_alpha = round(alpha_price * 75, 2)
-  tile_fomo = round(fomo_price * 25, 2)
-  tile_fud = round(fud_price * 25, 2)
+  tile_kek = round(kek_price * 25)
+  tile_alpha = round(alpha_price * 75)
+  tile_fomo = round(fomo_price * 25)
+  tile_fud = round(fud_price * 25)
 
-  tile_price = round(tile_kek + tile_alpha + tile_fomo + tile_fud, 2)
-  tile_ghst = round(tile_price / ghst_price, 2)
+  tile_price = round(tile_kek + tile_alpha + tile_fomo + tile_fud)
+  tile_ghst = round(tile_price / ghst_price)
 
   # query = '''
   # {
@@ -135,7 +135,7 @@ async def get_tile_prices(managers_channel):
   # print(altar_price, altar_alpha, altar_fomo, altar_fud, altar_ghst, altar_kek, baazaar_price, baazaar_usd, listing_url)
   # message = f'Cost of alchemica to craft LE Golden Aaltar is {altar_price} USD, {altar_ghst} GHST. \n{altar_kek} of KEK, {altar_alpha} of ALPHA, {altar_fomo} of FOMO and {altar_fud} of FUD. \nBaazaar floor price is {baazaar_price} GHST, {baazaar_usd} USD. \n{listing_url}'
   embedVar = discord.Embed(
-      title=f'LE Golden Altar costs {tile_ghst} GHST, or {tile_price} USD, to buy with alchemica', 
+      title=f'LE Golden Altar costs approx. {tile_ghst} GHST, or {tile_price} USD, to buy with alchemica', 
       color=0x8617bb)
   image = discord.File("mage-icon.png", filename="mage-icon.png")
   embedVar.set_author(name="The Order of Portal Mages", icon_url='attachment://mage-icon.png')
