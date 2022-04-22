@@ -63,7 +63,10 @@ async def get_listings(channel):
     # experience = d['gotchi']['experience']
     # level = d['gotchi']['level']
     period = int(d['period'])/3600
-    whitelist = d['whitelist']['id']
+    if d['whitelist']['id']:
+      whitelist = d['whitelist']['id']
+    else: 
+      whitelist = 'None'
     listing_url = "https://app.aavegotchi.com/lending/" + id
     
     embedVar = discord.Embed(
