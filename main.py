@@ -10,15 +10,15 @@ from golden import get_altar_prices, get_tile_prices
 token = config('TOKEN')
 
 bot = discord.Bot()
-# guild_ids = [880940749422751785] # TOPM
-guild_ids = [953689715759022081] # testing
+guild_ids = [880940749422751785] # TOPM
+# guild_ids = [953689715759022081] # testing
 
 
 @tasks.loop(seconds=300)
 async def cont_loop():
   print("Loop started")
-  # channel = bot.get_channel(957337208396861521) # main chat
-  channel = bot.get_channel(953689715759022084) # testing server
+  channel = bot.get_channel(957337208396861521) # main chat
+  # channel = bot.get_channel(953689715759022084) # testing server
   # await get_listings(channel)
   # await get_reactions(channel)
   # await get_multiples(channel)
@@ -31,8 +31,8 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-  # managers_channel = bot.get_channel(957358931053776956) # main chat
-  managers_channel = bot.get_channel(953689715759022084) # testing server
+  managers_channel = bot.get_channel(957358931053776956) # main chat
+  # managers_channel = bot.get_channel(953689715759022084) # testing server
   if message.author == bot.user:
     return
   elif message.content.startswith('!altar'):
