@@ -135,7 +135,7 @@ async def get_tile_prices(managers_channel):
   # print(altar_price, altar_alpha, altar_fomo, altar_fud, altar_ghst, altar_kek, baazaar_price, baazaar_usd, listing_url)
   # message = f'Cost of alchemica to craft LE Golden Aaltar is {altar_price} USD, {altar_ghst} GHST. \n{altar_kek} of KEK, {altar_alpha} of ALPHA, {altar_fomo} of FOMO and {altar_fud} of FUD. \nBaazaar floor price is {baazaar_price} GHST, {baazaar_usd} USD. \n{listing_url}'
   embedVar = discord.Embed(
-      title=f'LE Golden Altar costs approx. {tile_ghst} GHST, or {tile_price} USD, to buy with alchemica', 
+      title=f'LE Golden Tile costs approx. {tile_ghst} GHST, or {tile_price} USD, to buy with alchemica', 
       color=0x8617bb)
   image = discord.File("mage-icon.png", filename="mage-icon.png")
   embedVar.set_author(name="The Order of Portal Mages", icon_url='attachment://mage-icon.png')
