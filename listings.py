@@ -66,7 +66,7 @@ async def get_listings(channel):
     try:
       whitelist = d['whitelist']['id']
     except: 
-      whitelist = 'None'
+      whitelist = 'No Whitelist'
     listing_url = "https://app.aavegotchi.com/lending/" + id
     
     embedVar = discord.Embed(
@@ -86,6 +86,8 @@ async def get_listings(channel):
     embedVar.add_field(name="Owner's Discord", value='@'+owner_discord, inline=False)
 
     if listing_url in messages:
+      pass
+    elif whitelist == 'No Whitelist':
       pass
     else:
       await channel.send(file=image, embed=embedVar)
