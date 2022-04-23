@@ -19,8 +19,8 @@ async def cont_loop():
   print("Loop started")
   channel = bot.get_channel(957337208396861521) # main chat
   # channel = bot.get_channel(953689715759022084) # testing server
-  # await get_listings(channel)
-  # await get_reactions(channel)
+  await get_listings(channel)
+  await get_reactions(channel)
   # await get_multiples(channel)
   print("Loop completed")
 
@@ -31,14 +31,16 @@ async def on_ready():
 
 @bot.event
 async def on_message(message):
-  managers_channel = bot.get_channel(957358931053776956) # main chat
-  # managers_channel = bot.get_channel(953689715759022084) # testing server
+  message_channel = message.channel
   if message.author == bot.user:
     return
   elif message.content.startswith('!altar'):
-    await get_altar_prices(managers_channel)
+    print(message_channel)
+    await get_altar_prices(message_channel)
   elif message.content.startswith('!tile'):
-    await get_tile_prices(managers_channel)
+    print(message_channel)
+    await get_tile_prices(message_channel)
+
 
 @bot.slash_command(guild_ids=guild_ids)
 async def pass_blunt(ctx, receiver):

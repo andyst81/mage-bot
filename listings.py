@@ -63,9 +63,9 @@ async def get_listings(channel):
     # experience = d['gotchi']['experience']
     # level = d['gotchi']['level']
     period = int(d['period'])/3600
-    if d['whitelist']['id']:
+    try:
       whitelist = d['whitelist']['id']
-    else: 
+    except: 
       whitelist = 'None'
     listing_url = "https://app.aavegotchi.com/lending/" + id
     

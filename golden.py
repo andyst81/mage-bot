@@ -27,7 +27,7 @@ def get_alch_prices():
 
 
 
-async def get_altar_prices(managers_channel):
+async def get_altar_prices(message_channel):
 
   kek_price, alpha_price, fomo_price, fud_price, ghst_price = get_alch_prices()
 
@@ -70,10 +70,10 @@ async def get_altar_prices(managers_channel):
 
   listing_url = 'https://app.aavegotchi.com/baazaar/erc1155/' + data['id']
 
-  # print(altar_price, altar_alpha, altar_fomo, altar_fud, altar_ghst, altar_kek, baazaar_price, baazaar_usd, listing_url)
+  print(altar_price, altar_alpha, altar_fomo, altar_fud, altar_ghst, altar_kek, baazaar_price, listing_url)
   # message = f'Cost of alchemica to craft LE Golden Aaltar is {altar_price} USD, {altar_ghst} GHST. \n{altar_kek} of KEK, {altar_alpha} of ALPHA, {altar_fomo} of FOMO and {altar_fud} of FUD. \nBaazaar floor price is {baazaar_price} GHST, {baazaar_usd} USD. \n{listing_url}'
   embedVar = discord.Embed(
-      title=f'LE Golden Altar costs approx. {altar_ghst} GHST, or {altar_price} USD, to buy with alchemica', 
+      title=f'LE Golden Altar costs approx {altar_ghst} GHST or {altar_price} USD to buy with alchemica', 
       color=0x8617bb)
   image = discord.File("mage-icon.png", filename="mage-icon.png")
   embedVar.set_author(name="The Order of Portal Mages", icon_url='attachment://mage-icon.png')
@@ -85,11 +85,12 @@ async def get_altar_prices(managers_channel):
   embedVar.add_field(name="Current Baazaar Floor", value=str(baazaar_price) + " GHST", inline=False)
   embedVar.add_field(name="Baazaar Link", value=listing_url, inline=True)
   
-  await managers_channel.send(file=image, embed=embedVar)
+  await message_channel.send(file=image, embed=embedVar)
+  # return image, embedVar
 
 
 
-async def get_tile_prices(managers_channel):
+async def get_tile_prices(message_channel):
 
   kek_price, alpha_price, fomo_price, fud_price, ghst_price = get_alch_prices()
 
@@ -135,7 +136,7 @@ async def get_tile_prices(managers_channel):
   # print(altar_price, altar_alpha, altar_fomo, altar_fud, altar_ghst, altar_kek, baazaar_price, baazaar_usd, listing_url)
   # message = f'Cost of alchemica to craft LE Golden Aaltar is {altar_price} USD, {altar_ghst} GHST. \n{altar_kek} of KEK, {altar_alpha} of ALPHA, {altar_fomo} of FOMO and {altar_fud} of FUD. \nBaazaar floor price is {baazaar_price} GHST, {baazaar_usd} USD. \n{listing_url}'
   embedVar = discord.Embed(
-      title=f'LE Golden Tile costs approx. {tile_ghst} GHST, or {tile_price} USD, to buy with alchemica', 
+      title=f'LE Golden Tile costs approx {tile_ghst} GHST or {tile_price} USD to buy with alchemica', 
       color=0x8617bb)
   image = discord.File("mage-icon.png", filename="mage-icon.png")
   embedVar.set_author(name="The Order of Portal Mages", icon_url='attachment://mage-icon.png')
@@ -147,4 +148,4 @@ async def get_tile_prices(managers_channel):
   # embedVar.add_field(name="Current Baazaar Floor", value=str(baazaar_price) + " GHST", inline=False)
   # embedVar.add_field(name="Baazaar Link", value=listing_url, inline=True)
   
-  await managers_channel.send(file=image, embed=embedVar)
+  await message_channel.send(file=image, embed=embedVar)
